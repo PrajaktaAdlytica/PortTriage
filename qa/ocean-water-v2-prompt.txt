@@ -1,0 +1,7 @@
+Built-in imagegen. Reference: ChatGPT Image 27 Oct 2026, 19_55_37.png. Original generation, not an edit.
+
+Create one original raster texture for a premium ocean-logistics website, based only on the luminous blue ocean-water feel behind the middle ownership/evidence section of the reference. This is a background asset only, NOT a website screenshot. Landscape 1536x1024. Top-down close-up of calm clear sky-blue sea, very soft natural sun caustics and broad diagonal wave ripples, subtle paper-like editorial photographic grain. Pale to medium cyan #B9E3F3 / #7EC5E5 / #5FADDD, no deep dark areas, controlled contrast so navy text over it remains readable. Even spread of water texture across entire canvas, no horizon, no land, no boats, no objects, no text, no logos, no borders, no graphic overlays. Natural ripples should be visible but gentle, suitable for slow panning animation. High quality natural watercolor-photographic aesthetic matching elegant nautical evidence edition.
+
+Source output: /Users/prajaktagaikwad/.codex/generated_images/01a17dc3-bd14-7011-99d7-d152f0116359/exec-c2695045-0d42-430a-ad8e-ca2a9f7d158b.png
+Size: (1536, 1024)
+Inspection: clean even blue water, gentle diagonal caustics, no text/objects. Suitable for slow transform motion with reduced-motion fallback.

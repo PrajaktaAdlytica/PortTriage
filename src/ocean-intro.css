@@ -1,0 +1,43 @@
+.ocean-intro{height:100svh;min-height:600px;position:relative;overflow:clip;isolation:isolate;background:#031b2b;color:#f2f8fc}
+.intro-world,.intro-shade,.intro-sea,.intro-water-light{position:absolute;inset:0;pointer-events:none}
+.intro-world{overflow:hidden}.intro-sea{inset:-2%;background:url('/assets/intro-ocean.webp') center/cover no-repeat;animation:intro-tide 14s ease-in-out infinite alternate}
+.intro-water-light{inset:-8%;background:url('/assets/ocean-water-v2.webp') center/cover;mix-blend-mode:soft-light;opacity:.22;mask-image:linear-gradient(115deg,transparent 22%,black 65%);animation:intro-current 9s ease-in-out infinite alternate}
+.intro-shade{background:linear-gradient(90deg,#031b2b75,transparent 80%),linear-gradient(0deg,#031b2b99,transparent 22%)}
+.intro-vessel{position:absolute;width:clamp(210px,25vw,430px);left:61%;top:54%;will-change:transform}.intro-vessel img{position:relative;z-index:1;width:100%;filter:drop-shadow(0 8px 5px #00142166);animation:intro-bob 4s ease-in-out infinite alternate}
+.intro-wake{position:absolute;width:105%;height:20%;left:49%;top:12%;border-radius:50%;transform:rotate(-29deg);transform-origin:left center;background:radial-gradient(ellipse at left,#d8eeff66,transparent 70%);filter:blur(5px);animation:intro-wake 2.5s ease-in-out infinite alternate}
+.intro-content{position:relative;z-index:2;padding:clamp(50px,9vh,100px) 6vw 0;max-width:1000px;pointer-events:none}.intro-brand{width:210px;height:auto;margin-bottom:clamp(60px,11vh,120px)}
+.intro-kicker{color:#b3d2e2;font-size:10px;text-transform:uppercase;letter-spacing:2.6px;margin-bottom:23px}
+.intro-title{font-size:clamp(58px,6.2vw,100px);line-height:1.03;letter-spacing:-.045em;color:#f3f8fc}.intro-title>span{display:block}.intro-title i{font-weight:400}.intro-description{font-size:15px;color:#b9d1df;margin-top:25px}
+.intro-bottom{position:absolute;z-index:3;bottom:35px;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:center;gap:24px}.intro-bottom>span{font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:#bbd5e3}.intro-bottom>div{display:flex;gap:15px}.intro-bottom button{display:flex;gap:12px;align-items:center;color:#eff8fc;border:1px solid #a3c7de55;border-radius:4px;padding:13px 17px;background:#06223888;font-size:12px;transition:background .2s}.intro-bottom button:hover{background:#20475e}.intro-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:#ffffff13}.intro-progress span{display:block;height:100%;background:#86b6d0;transform:scaleX(0);transform-origin:left}
+.intro-paused .intro-world *{animation-play-state:paused!important}
+.has-ocean-intro .site-header{opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity .6s,transform .6s}.has-ocean-intro.intro-nav-ready .site-header{opacity:1;transform:none;pointer-events:auto}
+@keyframes intro-tide{from{transform:scale(1.01) translateY(0)}to{transform:scale(1.035) translateY(-.6%)}}
+@keyframes intro-current{from{transform:translate(-1.5%,1%) scale(1.03);opacity:.13}to{transform:translate(1.5%,-1%) scale(1.07);opacity:.28}}
+@keyframes intro-bob{from{transform:rotate(-.6deg) translateY(-2px)}to{transform:rotate(.6deg) translateY(2px)}}
+@keyframes intro-wake{from{opacity:.3;scale:.9}to{opacity:.65;scale:1.1}}
+@media(max-width:700px){.ocean-intro{min-height:650px}.intro-content{padding:45px 7vw 0}.intro-brand{width:175px;margin-bottom:70px}.intro-kicker{font-size:8px;letter-spacing:1.8px}.intro-title{font-size:clamp(44px,9vw,64px)}.intro-description{font-size:12px;max-width:210px}.intro-vessel{left:50%;top:61%;width:240px}.intro-sea{background-position:60% center}.intro-bottom{left:7vw;right:7vw;bottom:24px;align-items:flex-start;flex-direction:column;gap:18px}.intro-bottom>span{font-size:7px}.intro-bottom button{font-size:11px;padding:11px 14px}.intro-bottom>div{width:100%;justify-content:space-between}}
+@media(prefers-reduced-motion:reduce){.intro-world *{animation:none!important}.has-ocean-intro .site-header{transition:none}.intro-vessel{transform:none!important}}
+
+/* Waterline revision: attached photographic foam, no hovering shadow or bob. */
+.intro-vessel{width:clamp(200px,23vw,360px);left:61%;top:55%}.intro-vessel img{filter:brightness(.82) saturate(.8);animation:none}
+@media(max-width:700px){.intro-vessel{width:225px;left:43%;top:62%}}
+
+/* Eight-second intro: upright headline and stronger, continuous surface currents. */
+.intro-sea{animation:intro-tide 8s ease-in-out infinite alternate}
+.intro-water-light{opacity:.32;animation:intro-current 4s ease-in-out infinite alternate;mask-image:linear-gradient(115deg,transparent 10%,black 55%)}
+.intro-water-light::after{content:"";position:absolute;inset:0;background:url('/assets/ocean-water-v2.webp') center/cover;mix-blend-mode:screen;opacity:.26;transform:rotate(5deg) scale(1.1);animation:intro-crosscurrent 5s ease-in-out infinite alternate}
+@keyframes intro-current{from{transform:translate(-3%,2%) scale(1.05);opacity:.22}to{transform:translate(3%,-2%) scale(1.12);opacity:.4}}
+@keyframes intro-crosscurrent{from{transform:rotate(5deg) translate(2%,-1%) scale(1.1)}to{transform:rotate(5deg) translate(-2%,2%) scale(1.16)}}
+.intro-paused .intro-water-light::after{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.intro-water-light::after{animation:none!important}}
+
+/* Fixed vessel: only the ocean surface animates. */
+.intro-vessel{transform:translate(-12%,10%);will-change:auto}
+.intro-vessel img{animation:none;transform:none}
+
+/* Visible cross-currents continue when the six-second title sequence completes. */
+.intro-wave-surface{position:absolute;inset:-15%;pointer-events:none;background:url('/assets/ocean-water-v2.webp') center/cover;mix-blend-mode:soft-light;opacity:.48;mask-image:linear-gradient(105deg,transparent 15%,#000 55%);animation:intro-surface-flow 3s linear infinite alternate}
+.intro-water-light{mix-blend-mode:screen;animation:intro-current 2.4s ease-in-out infinite alternate}
+@keyframes intro-current{from{transform:translate(-4%,2%) scale(1.08);opacity:.13}to{transform:translate(4%,-2%) scale(1.16);opacity:.3}}
+@keyframes intro-surface-flow{from{transform:translate(-4%,3%) scale(1.05)}to{transform:translate(4%,-3%) scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.intro-wave-surface{animation:none!important}}

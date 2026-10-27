@@ -1,0 +1,86 @@
+{
+  "company": "PortTriage",
+  "concept": 41,
+  "status": "research-stage concept",
+  "deliverable": "IA and motion plan; no production implementation",
+  "buyer": "VP import operations at a forwarder or high-volume importer",
+  "user": "exception coordinator",
+  "approver": "data/TMS integration owner",
+  "qualification": "repeated exceptions on a named lane",
+  "modules": [
+    {
+      "id": "port-desk",
+      "name": "PortTriage Port Desk",
+      "job": "ETA-confidence and missed-connection triage",
+      "pilot_candidate": true,
+      "status": "proposed module",
+      "route": "/products/port-desk"
+    },
+    {
+      "id": "port-review",
+      "name": "PortTriage Port Review",
+      "job": "Terminal release/hold evidence and escalation",
+      "pilot_candidate": true,
+      "status": "proposed module",
+      "route": "/products/port-review"
+    },
+    {
+      "id": "port-proof",
+      "name": "PortTriage Port Proof",
+      "job": "Dispatcher-approved drayage appointment recovery",
+      "pilot_candidate": false,
+      "status": "proposed module",
+      "route": "/products/port-proof"
+    },
+    {
+      "id": "port-signal",
+      "name": "PortTriage Port Signal",
+      "job": "Customer promise-change notification and SLA audit",
+      "pilot_candidate": false,
+      "status": "proposed module",
+      "route": "/products/port-signal"
+    },
+    {
+      "id": "port-report",
+      "name": "PortTriage Port Report",
+      "job": "Port/lane root-cause and carrier scorecard export",
+      "pilot_candidate": false,
+      "status": "proposed module",
+      "route": "/products/port-report"
+    }
+  ],
+  "primary_cta": "Request a one-lane review",
+  "pricing": {
+    "status": "hypothetical test prices, not accepted offers",
+    "port_desk_monthly_usd_per_lane": 1500,
+    "feed_mapping_setup_usd": 2000,
+    "two_week_pilot_fee_usd": null,
+    "other_module_prices": null
+  },
+  "validation_targets": {
+    "days": 30,
+    "buyer_user_interviews": 12,
+    "permissioned_redacted_samples": 3,
+    "signed_paid_pilot_minimum": 1,
+    "named_integration_owner_required": true
+  },
+  "build_gate": [
+    "signed paid pilot",
+    "written data rights",
+    "retrospective lift"
+  ],
+  "prohibited_demo_actions": [
+    "external message send",
+    "terminal login",
+    "customs decision",
+    "appointment reschedule",
+    "production notification",
+    "payment collection",
+    "sensitive document upload"
+  ],
+  "persistent_labels": [
+    "DEMO — SYNTHETIC DATA",
+    "CONCEPT PREVIEW"
+  ],
+  "reference_document": "PortTriage-website-architecture.html"
+}

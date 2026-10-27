@@ -1,0 +1,142 @@
+{
+  "schema_version": "planning-1",
+  "synthetic": true,
+  "required_case_fields": {
+    "id": "string",
+    "synthetic": "boolean; must be true",
+    "account": "fictional string",
+    "lane": "fictional label",
+    "container_id": "synthetic non-operational identifier",
+    "status": "pending | blocked | completed | rejected",
+    "owner": "fictional person",
+    "next_action": "string",
+    "action_deadline": "ISO8601 timezone-qualified",
+    "events": "Event[]",
+    "contradiction": "reason + rule + evidence IDs, or null",
+    "draft": "text + pending/approved/rejected simulation state",
+    "audit": "append-only actions with timestamp/actor/revision",
+    "avoided_cost": "value + claim status"
+  },
+  "event_fields": {
+    "id": "string",
+    "taxonomy": "vessel_port_call | container | handoff",
+    "kind": "string",
+    "time_kind": "estimated | requested | planned | actual",
+    "event_at": "ISO8601 timezone-qualified",
+    "observed_at": "ISO8601 timezone-qualified",
+    "source_ref": "synthetic source ID",
+    "source_name": "synthetic display label",
+    "confidence": "categorical evidence assessment, not a fabricated probability",
+    "entitlement": "synthetic_only | permitted | unknown | unavailable"
+  },
+  "initial_counts": {
+    "pending": 4,
+    "blocked": 2,
+    "completed": 2,
+    "rejected": 2
+  },
+  "sample_case": {
+    "id": "PEX-014",
+    "synthetic": true,
+    "account": "Alder Quay Imports (fictional)",
+    "lane": "Sample Harbor A → Sample Harbor B",
+    "container_id": "SYN-C014",
+    "status": "pending",
+    "owner": "Maya",
+    "next_action": "Review current availability evidence and request dispatcher review",
+    "action_deadline": "2026-10-26T10:30:00Z",
+    "events": [
+      {
+        "id": "E1",
+        "taxonomy": "vessel_port_call",
+        "kind": "berth",
+        "time_kind": "estimated",
+        "event_at": "2026-10-27T06:00:00Z",
+        "observed_at": "2026-10-26T08:05:00Z",
+        "source_ref": "SIM-CARRIER-001",
+        "source_name": "SIM-CARRIER-001 (synthetic)",
+        "confidence": "unvalidated synthetic estimate",
+        "entitlement": "synthetic_only"
+      },
+      {
+        "id": "E2",
+        "taxonomy": "container",
+        "kind": "availability_projection",
+        "time_kind": "estimated",
+        "event_at": "2026-10-27T12:00:00Z",
+        "observed_at": "2026-10-26T08:10:00Z",
+        "source_ref": "SIM-CONTAINER-002",
+        "source_name": "SIM-CONTAINER-002 (synthetic)",
+        "confidence": "unvalidated synthetic estimate",
+        "entitlement": "synthetic_only"
+      },
+      {
+        "id": "E3",
+        "taxonomy": "handoff",
+        "kind": "pickup_appointment",
+        "time_kind": "planned",
+        "event_at": "2026-10-27T14:00:00Z",
+        "observed_at": "2026-10-26T08:20:00Z",
+        "source_ref": "SIM-DISPATCH-003",
+        "source_name": "SIM-DISPATCH-003 (synthetic)",
+        "confidence": "unvalidated synthetic estimate",
+        "entitlement": "synthetic_only"
+      },
+      {
+        "id": "E4",
+        "taxonomy": "vessel_port_call",
+        "kind": "berth_revision",
+        "time_kind": "estimated",
+        "event_at": "2026-10-27T18:00:00Z",
+        "observed_at": "2026-10-26T10:00:00Z",
+        "source_ref": "SIM-CARRIER-004",
+        "source_name": "SIM-CARRIER-004 (synthetic)",
+        "confidence": "unvalidated synthetic estimate",
+        "entitlement": "synthetic_only"
+      }
+    ],
+    "contradiction": {
+      "rule": "scheduled_pickup_precedes_updated_berth",
+      "reason": "Pickup 14:00 precedes updated berth 18:00; earlier container availability estimate is stale, not actual release.",
+      "evidence_ids": [
+        "E2",
+        "E3",
+        "E4"
+      ]
+    },
+    "draft": {
+      "state": "pending",
+      "text": "Please confirm latest container-availability evidence for synthetic case PEX-014. Revised berth estimate is 27 October 18:00 UTC; sample pickup remains 14:00 UTC.",
+      "external_send_enabled": false
+    },
+    "audit": [
+      {
+        "at": "2026-10-26T10:05:00Z",
+        "actor": "Maya",
+        "action": "assigned owner",
+        "revision": 1
+      }
+    ],
+    "avoided_cost": {
+      "value_usd": 0,
+      "status": "unclaimed; not measured"
+    }
+  },
+  "invariants": [
+    "All counts computed from the same eventual 10-record fixture",
+    "At least one rejected recovery recommendation for insufficient release evidence",
+    "At least one blocked source-permission case",
+    "Approval can change only by explicit simulated human action",
+    "Scroll does not modify approval state",
+    "Unknown hold/release is not false or released",
+    "Estimate revisions retain prior event and source history",
+    "Every screenshot retains DEMO labels",
+    "Completed cases require fictional closure evidence, not a scroll event"
+  ],
+  "pipeline_stages": [
+    "Sample requested",
+    "Data permissions",
+    "Lane replay",
+    "Paid pilot proposed"
+  ]
+}
